@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Poppins", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --color-teal-deep: #0D3447;
+  --color-cream-warm: #FFF4E3;
+  --color-gold-accent: #F5B942;
+  --color-canvas: #F8FAFC;
+  --color-ink: #1E293B;
+  --color-emerald-ok: #16A34A;
+}
+
+@layer base {
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+    background-color: #F8FAFC;
+    color: #1E293B;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: "Poppins", system-ui, sans-serif;
+  }
+}
+
+/* Text size accessibility modes */
+html[data-text-size="small"] {
+  font-size: 14px;
+}
+
+html[data-text-size="medium"] {
+  font-size: 16px;
+}
+
+html[data-text-size="large"] {
+  font-size: 18.5px;
+}
+
+/* Reduced motion accessibility mode */
+html[data-reduced-motion="true"] *,
+html[data-reduced-motion="true"] *::before,
+html[data-reduced-motion="true"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* High contrast accessibility mode */
+html[data-contrast="high"] body {
+  background-color: #090D16 !important;
+  color: #FFFFFF !important;
+}
+
+html[data-contrast="high"] .hc-surface {
+  background-color: #111827 !important;
+  color: #FFFFFF !important;
+  border-color: #F5B942 !important;
+}
+
+html[data-contrast="high"] .hc-surface-alt {
+  background-color: #1F2937 !important;
+  color: #FFFFFF !important;
+  border-color: #FACC15 !important;
+}
+
+html[data-contrast="high"] .hc-muted {
+  color: #E2E8F0 !important;
+}
+
+html[data-contrast="high"] .hc-heading {
+  color: #FACC15 !important;
+}
+
+html[data-contrast="high"] .hc-nav {
+  background-color: #090D16 !important;
+  border-color: #F5B942 !important;
+}
+
+/* AR Scan Sweep Keyframes */
+@keyframes ar-scan-line {
+  0% {
+    transform: translateY(0%);
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0.15;
+  }
+}
+
+.animate-ar-scan {
+  animation: ar-scan-line 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Subtle scrollbar hiding for horizontal carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

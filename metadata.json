@@ -1,0 +1,6 @@
+{
+  "name": "MyXR Explorer",
+  "description": "Explore Malaysia, Beyond Reality — An interactive XR tourism prototype featuring AR heritage reconstruction, 360-degree virtual tours, gamified heritage quests, smart trip planning, and inclusive accessibility.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
