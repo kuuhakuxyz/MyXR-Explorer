@@ -3,6 +3,7 @@ import { NavigationShell } from './components/NavigationShell';
 import { useExplorerStore } from './hooks/useExplorerStore';
 import { TRANSLATIONS } from './i18n/translations';
 import { ScreenId } from './types';
+import { HERITAGE_DESTINATIONS } from './data/heritageData';
 import { HomeScreen } from './screens/HomeScreen';
 import { ExploreScreen } from './screens/ExploreScreen';
 import { ARLensScreen } from './screens/ARLensScreen';
@@ -12,6 +13,37 @@ import { PlannerScreen } from './screens/PlannerScreen';
 import { AccessibilityScreen } from './screens/AccessibilityScreen';
 import { ProfileScreen } from './screens/ProfileScreen';
 import { DestinationDetailScreen } from './screens/DestinationDetailScreen';
+
+const VALID_SCREENS: ScreenId[] = [
+  'home',
+  'explore',
+  'ar-lens',
+  'virtual-tour',
+  'quests',
+  'planner',
+  'accessibility',
+  'profile',
+  'detail',
+];
+
+function parseHashRoute(): { screen: ScreenId; destinationId: string } {
+  if (typeof window === 'undefined') {
+    return { screen: 'home', destinationId: 'a-famosa' };
+  }
+  const raw = window.location.hash.replace(/^#\/?/, '').trim();
+  if (!raw) {
+    return { screen: 'home', destinationId: 'a-famosa' };
+  }
+  const [screenPart, destPart] = raw.split('/');
+  const screen = VALID_SCREENS.includes(screenPart as ScreenId)
+    ? (screenPart as ScreenId)
+    : 'home';
+  const validDest =
+    destPart && HERITAGE_DESTINATIONS.some((d) => d.id === destPart)
+      ? destPart
+      : 'a-famosa';
+  return { screen, destinationId: validDest };
+}
 
 export default function App() {
   const {
@@ -31,8 +63,11 @@ export default function App() {
     resetProgress,
   } = useExplorerStore();
 
-  const [activeScreen, setActiveScreen] = useState<ScreenId>('home');
-  const [selectedDestinationId, setSelectedDestinationId] = useState<string>('a-famosa');
+  const initialRoute = parseHashRoute();
+  const [activeScreen, setActiveScreen] = useState<ScreenId>(initialRoute.screen);
+  const [selectedDestinationId, setSelectedDestinationId] = useState<string>(
+    initialRoute.destinationId
+  );
   const [historyStack, setHistoryStack] = useState<ScreenId[]>([]);
   const [phoneFrameMode, setPhoneFrameMode] = useState<boolean>(false);
   const [isTransitioningXr, setIsTransitioningXr] = useState<boolean>(false);
@@ -76,10 +111,34 @@ export default function App() {
     });
   }, []);
 
-  // Support browser back/hash navigation cleanly
+  // Sync URL hash and handle browser Back/Forward or unknown hashes gracefully
   useEffect(() => {
-    window.location.hash = activeScreen === 'home' ? '' : `#${activeScreen}`;
-  }, [activeScreen]);
+    const destScreens: ScreenId[] = ['detail', 'ar-lens', 'virtual-tour'];
+    const targetHash =
+      activeScreen === 'home'
+        ? ''
+        : destScreens.includes(activeScreen)
+        ? `#/${activeScreen}/${selectedDestinationId}`
+        : `#/${activeScreen}`;
+
+    if (window.location.hash !== targetHash) {
+      if (targetHash) {
+        window.location.hash = targetHash;
+      } else if (window.location.hash) {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+    }
+  }, [activeScreen, selectedDestinationId]);
+
+  useEffect(() => {
+    const onHashChange = () => {
+      const parsed = parseHashRoute();
+      setActiveScreen(parsed.screen);
+      setSelectedDestinationId(parsed.destinationId);
+    };
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
 
   const renderScreen = () => {
     if (isTransitioningXr) {

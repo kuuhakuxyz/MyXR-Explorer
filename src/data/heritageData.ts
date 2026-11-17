@@ -1,4 +1,11 @@
 import { AchievementBadge, HeritageDestination, HeritageQuest } from '../types';
+import aFamosaPresentImg from '../assets/images/a_famosa_present_1794854558664.jpg';
+import aFamosaHistoricalImg from '../assets/images/a_famosa_historical_1794854558414.jpg';
+import christChurchImg from '../assets/images/christ_church_melaka_1794854559692.jpg';
+import jonkerStreetImg from '../assets/images/jonker_street_melaka_1794854568525.jpg';
+import stPaulsHillImg from '../assets/images/st_pauls_hill_1794854560379.jpg';
+import maritimeMuseumImg from '../assets/images/maritime_museum_melaka_1794854561618.jpg';
+import melakaPanoramaImg from '../assets/images/melaka_panorama_1794854565302.jpg';
 
 export const HERITAGE_DESTINATIONS: HeritageDestination[] = [
   {
@@ -13,8 +20,8 @@ export const HERITAGE_DESTINATIONS: HeritageDestination[] = [
     sampleOpeningHours: 'Open daily, 24 hours (Sample Visitor Hours: 8:00 AM – 8:00 PM best daylight)',
     accessibilityNote: 'Level paved brick plaza from Jalan Parameswara; step-free approach to main archway.',
     accessibleFriendly: true,
-    image: '/src/assets/images/a_famosa_present_1794854558664.jpg',
-    historicalImage: '/src/assets/images/a_famosa_historical_1794854558414.jpg',
+    image: aFamosaPresentImg,
+    historicalImage: aFamosaHistoricalImg,
     historicalYear: '1511–1641',
     historicalTitle: 'Fortaleza de Malaca Reconstruction',
     description:
@@ -83,7 +90,7 @@ export const HERITAGE_DESTINATIONS: HeritageDestination[] = [
     sampleOpeningHours: 'Sample Visitor Hours: Tue–Sun, 9:00 AM – 5:00 PM (Closed Mondays)',
     accessibilityNote: 'Flat brick courtyard at Dutch Square with ramped access into the main church hall.',
     accessibleFriendly: true,
-    image: '/src/assets/images/christ_church_melaka_1794854559692.jpg',
+    image: christChurchImg,
     description:
       'Completed in 1753 to commemorate a century of Dutch presence in Melaka, Christ Church anchors the iconic terracotta-red Dutch Square alongside the Stadthuys and Queen Victoria Fountain.',
     historicalSummary:
@@ -143,7 +150,7 @@ export const HERITAGE_DESTINATIONS: HeritageDestination[] = [
     sampleOpeningHours: 'Open daily (Sample Night Market Hours: Fri–Sun, 6:00 PM – 11:00 PM)',
     accessibilityNote: 'Step-free pedestrian street during evening market hours; narrow five-foot ways during daytime.',
     accessibleFriendly: true,
-    image: '/src/assets/images/jonker_street_melaka_1794854568525.jpg',
+    image: jonkerStreetImg,
     description:
       'Once known as the street of antiques and wealthy Baba-Nyonya townhouses, Jonker Street preserves centuries of Straits Chinese architecture, clan associations, and living culinary traditions.',
     historicalSummary:
@@ -195,7 +202,7 @@ export const HERITAGE_DESTINATIONS: HeritageDestination[] = [
     sampleOpeningHours: 'Open daily (Sample Recommended Hours: 7:30 AM – 7:00 PM)',
     accessibilityNote: 'Direct ascent involves 80+ steep stone steps; accessible step-free road loop available via Muzium Rakyat side.',
     accessibleFriendly: false,
-    image: '/src/assets/images/st_pauls_hill_1794854560379.jpg',
+    image: stPaulsHillImg,
     description:
       'Perched atop Bukit St. Paul overlooking the Strait of Malacca, the roofless stone church ruins began in 1521 as the Portuguese Chapel of Our Lady of the Hill before becoming a Dutch burial ground.',
     historicalSummary:
@@ -247,7 +254,7 @@ export const HERITAGE_DESTINATIONS: HeritageDestination[] = [
     sampleOpeningHours: 'Sample Visitor Hours: Daily, 9:00 AM – 5:30 PM',
     accessibilityNote: 'Accessible riverside promenade approach; main ship gallery has narrow wooden deck stairs.',
     accessibleFriendly: true,
-    image: '/src/assets/images/maritime_museum_melaka_1794854561618.jpg',
+    image: maritimeMuseumImg,
     description:
       'Housed inside a 34-meter-tall replica of the Portuguese carrack Flor de la Mar, the Maritime Museum chronicles Melaka’s rise as the crossroads of global spice trade.',
     historicalSummary:
@@ -289,7 +296,7 @@ export const HERITAGE_DESTINATIONS: HeritageDestination[] = [
   },
 ];
 
-export const MELAKA_PANORAMA_IMAGE = '/src/assets/images/melaka_panorama_1794854565302.jpg';
+export const MELAKA_PANORAMA_IMAGE = melakaPanoramaImg;
 
 export const HERITAGE_QUESTS: HeritageQuest[] = [
   {
